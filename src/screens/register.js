@@ -2,12 +2,27 @@ import React,{ useState, useEffect } from 'react'
 import { View, Text, KeyboardAvoidingView, Image, TextInput, TouchableOpacity } from 'react-native'
 import { FontAwesome5, Fontisto, Zocial } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable'
+import firebase from '../services/firebase'
 
 import styles from '../styles/register'
 import stylesForm from '../styles/form'
 
 export default function register({ navigation }) {
+    /* const [user, setUser] = useState()
+    const [password, setPassword] = useState()
+    const [email, setEmail] = useState()
 
+    function createUser(){
+        try {
+            firebase.database().ref('/users').push({
+                name: user,
+                password: password,
+                email: email
+            })
+        } catch (error) {
+        console.log(error)
+        }
+    } */
     const AnimatedButton = Animatable.createAnimatableComponent(TouchableOpacity)
     return (
         <KeyboardAvoidingView style={styles.background}>
@@ -36,6 +51,7 @@ export default function register({ navigation }) {
                     <TextInput style={stylesForm.input}
                         placeholder={'Digite seu nome'}
                         autoCorret={false}
+                        /* onChangeText={(text) => setUser(text)} */
                     />
                 </Animatable.View>
 
@@ -54,6 +70,7 @@ export default function register({ navigation }) {
                         placeholder={'Digite seu e-mail'}
                         autoCorret={false}
                         autoCapitalize={'none'}
+                        /* onChangeText={(text) => setEmail(text)} */
                     />
                 </Animatable.View>
                 
@@ -73,6 +90,7 @@ export default function register({ navigation }) {
                         autoCorret={false}
                         autoCapitalize={'none'}
                         secureTextEntry={true}
+                        /* onChangeText={(text) => setPassword(text)} */
                     />
                 </Animatable.View>
                 {/* botões */}
@@ -80,6 +98,7 @@ export default function register({ navigation }) {
                     <AnimatedButton style={stylesForm.button}
                         animation={'slideInUp'}
                         duration={600}
+                        /* onPress={()=> createUser()} */
                     >
                         <Text style={stylesForm.textBtn}>Registrar</Text>
                     </AnimatedButton>
