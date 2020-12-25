@@ -54,14 +54,17 @@ export default function login({ navigation }) {
         console.log("Verificando")
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then((user) => {
-            // Signed in
-            // ...
+            /*
+            
+            IMPLEMENTAR NAVEGAÇÃO DE TELAS
+            
+            */
             console.log('Logado')
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log('Error')
+            console.log('Erro de login')
         });
     }
 

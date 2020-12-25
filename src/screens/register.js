@@ -15,13 +15,12 @@ export default function register({ navigation }) {
     function createUser(email, password){
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((user) => {
-            // Signed in
-            // ...
+            console.log('Usuario cadastrado')
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
-            // ..
+            console.log('erro de cadastro')
         });
     }
     const AnimatedButton = Animatable.createAnimatableComponent(TouchableOpacity)
