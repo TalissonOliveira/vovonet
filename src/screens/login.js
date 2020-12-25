@@ -6,11 +6,14 @@ import * as Animatable from 'react-native-animatable'
 
 import styles from '../styles/login'
 import stylesForm from '../styles/form'
+import firebase from '../services/firebase'
 
 export default function login({ navigation }) {
     const AnimatedButton = Animatable.createAnimatableComponent(TouchableOpacity)
     //const AnimatedImg = Animated.createAnimatedComponent(Image)
     const [logo, setLogo] = useState(new Animated.ValueXY({x: 160, y: 160}))
+    const [password, setPassword] = useState()
+    const [email, setEmail] = useState()
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow)
@@ -47,6 +50,21 @@ export default function login({ navigation }) {
             })
         ]).start()
     }
+    function singIn(email, password){
+        console.log("Verificando")
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((user) => {
+            // Signed in
+            // ...
+            console.log('Logado')
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log('Error')
+        });
+    }
+
     return (
         <KeyboardAvoidingView style={styles.background}>
             {/* logo */}
@@ -75,6 +93,7 @@ export default function login({ navigation }) {
                         placeholder={'Digite seu e-mail'}
                         autoCorret={false}
                         autoCapitalize={'none'}
+                        onChangeText={(text) => setEmail(text)}
                     />
                 </Animatable.View>
                 
@@ -94,6 +113,7 @@ export default function login({ navigation }) {
                         autoCorret={false}
                         autoCapitalize={'none'}
                         secureTextEntry={true}
+                        onChangeText={(text) => setPassword(text)}
                     />
                 </Animatable.View>
                 {/* botões */}
@@ -101,6 +121,7 @@ export default function login({ navigation }) {
                     <AnimatedButton style={stylesForm.button}
                         animation={'slideInUp'}
                         duration={600}
+                        onPress={()=> singIn(email,password)}
                     >
                         <Text style={stylesForm.textBtn}>Entrar</Text>
                     </AnimatedButton>

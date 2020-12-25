@@ -8,21 +8,22 @@ import styles from '../styles/register'
 import stylesForm from '../styles/form'
 
 export default function register({ navigation }) {
-    /* const [user, setUser] = useState()
+    const [user, setUser] = useState()
     const [password, setPassword] = useState()
     const [email, setEmail] = useState()
 
-    function createUser(){
-        try {
-            firebase.database().ref('/users').push({
-                name: user,
-                password: password,
-                email: email
-            })
-        } catch (error) {
-        console.log(error)
-        }
-    } */
+    function createUser(email, password){
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((user) => {
+            // Signed in
+            // ...
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ..
+        });
+    }
     const AnimatedButton = Animatable.createAnimatableComponent(TouchableOpacity)
     return (
         <KeyboardAvoidingView style={styles.background}>
@@ -50,8 +51,8 @@ export default function register({ navigation }) {
                     <FontAwesome5 style={{paddingLeft: 5, paddingRight: 4}} name="user-alt" size={26} color="black" />
                     <TextInput style={stylesForm.input}
                         placeholder={'Digite seu nome'}
+                        onChangeText={ text => setUser(text)}
                         autoCorret={false}
-                        /* onChangeText={(text) => setUser(text)} */
                     />
                 </Animatable.View>
 
@@ -70,7 +71,7 @@ export default function register({ navigation }) {
                         placeholder={'Digite seu e-mail'}
                         autoCorret={false}
                         autoCapitalize={'none'}
-                        /* onChangeText={(text) => setEmail(text)} */
+                        onChangeText={(text) => setEmail(text)}
                     />
                 </Animatable.View>
                 
@@ -90,7 +91,7 @@ export default function register({ navigation }) {
                         autoCorret={false}
                         autoCapitalize={'none'}
                         secureTextEntry={true}
-                        /* onChangeText={(text) => setPassword(text)} */
+                        onChangeText={(text) => setPassword(text)}
                     />
                 </Animatable.View>
                 {/* botões */}
@@ -98,7 +99,7 @@ export default function register({ navigation }) {
                     <AnimatedButton style={stylesForm.button}
                         animation={'slideInUp'}
                         duration={600}
-                        /* onPress={()=> createUser()} */
+                        onPress={()=> createUser(email,password)}
                     >
                         <Text style={stylesForm.textBtn}>Registrar</Text>
                     </AnimatedButton>
