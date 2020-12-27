@@ -10,7 +10,11 @@ var firebaseConfig = {
     measurementId: "G-S42NG0VMMT"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  if (!firebase.apps.length) { // Se não foi inicializado, inicializes 
+    firebase.initializeApp(firebaseConfig);
+ }else { // Se já foi inicializado, use ele
+    firebase.app();
+ }
+  //firebase.analytics(); não é suportado pelo Node.js e nem pelp React Native
 
   export default firebase

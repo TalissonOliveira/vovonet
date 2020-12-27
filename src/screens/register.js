@@ -4,17 +4,32 @@ import { FontAwesome5, Fontisto, Zocial } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable'
 import firebase from '../services/firebase'
 
+
 import styles from '../styles/register'
 import stylesForm from '../styles/form'
 
 export default function register({ navigation }) {
-    const [user, setUser] = useState()
+    const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
-    function createUser(email, password){
+    function createUser(name, email, password){
+        if(!name || !email || !password) {
+            return
+        }
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((user) => {
+            const userId = user.user.uid
+            firebase.firestore().collection("users").doc(userId).set({
+                name: name,
+                email: email
+            })
+            .then(() => {
+                console.log('Dados do usuário salvos')
+            })
+            .catch(() => {
+                console.error('Falha ao salvar os dados');
+            });
             console.log('Usuario cadastrado')
         })
         .catch((error) => {
@@ -52,7 +67,7 @@ export default function register({ navigation }) {
                     <FontAwesome5 style={{paddingLeft: 5, paddingRight: 4}} name="user-alt" size={26} color="black" />
                     <TextInput style={stylesForm.input}
                         placeholder={'Digite seu nome'}
-                        onChangeText={ text => setUser(text)}
+                        onChangeText={ text => setName(text)}
                         autoCorret={false}
                     />
                 </Animatable.View>
@@ -100,7 +115,7 @@ export default function register({ navigation }) {
                     <AnimatedButton style={stylesForm.button}
                         animation={'slideInUp'}
                         duration={600}
-                        onPress={()=> createUser(email,password)}
+                        onPress={()=> createUser(name, email,password)}
                     >
                         <Text style={stylesForm.textBtn}>Registrar</Text>
                     </AnimatedButton>

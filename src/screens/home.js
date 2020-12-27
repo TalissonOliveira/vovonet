@@ -1,6 +1,7 @@
-import React from 'react'
+﻿import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 import * as Animatable from 'react-native-animatable'
 
@@ -50,6 +51,7 @@ export default function home({ navigation }) {
                     </View>
                 </TouchableOpacity>
             </View>
+	    <StatusBar style='light' backgroundColor='#51206A' translucent={false}/>
         </View>
     )
 }
