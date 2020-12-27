@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { StatusBar } from 'expo-status-bar';
 
 import * as Animatable from 'react-native-animatable'
 
@@ -39,6 +40,7 @@ export default function InitialScreen({ navigation }) {
                     <Text style={styles.textBtn}>Cadastrar</Text>
                 </AnimatedButton>
             </View>
+            <StatusBar style='light' backgroundColor='#11182A' translucent={false}/>
         </View>
     )
 }
