@@ -9,8 +9,8 @@ import stylesForm from '../styles/form'
 
 export default function register({ navigation }) {
     const [user, setUser] = useState()
-    const [password, setPassword] = useState()
     const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
 
     function createUser(email, password){
         firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -20,10 +20,12 @@ export default function register({ navigation }) {
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log('erro de cadastro')
+            console.log(errorCode, errorMessage)
         });
     }
+
     const AnimatedButton = Animatable.createAnimatableComponent(TouchableOpacity)
+
     return (
         <KeyboardAvoidingView style={styles.background}>
             {/* logo */}
