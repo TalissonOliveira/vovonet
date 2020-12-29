@@ -13,6 +13,11 @@ export default function login({ navigation }) {
     const [logo, setLogo] = useState(new Animated.ValueXY({ x: 160, y: 160 }))
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
+
+    useEffect(() => {
+        setMessage('')
+    }, [email, password])
 
     const AnimatedImg = Animatable.createAnimatableComponent(Image)
 
@@ -52,7 +57,10 @@ export default function login({ navigation }) {
         ]).start()
     }
     function singIn(email, password) {
-        console.log("Verificando")
+        if(!email || !password) {
+            setMessage('Por favor, preencha todos os campos!')
+            return
+        }
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((user) => {
                 /*
@@ -63,9 +71,21 @@ export default function login({ navigation }) {
                 console.log('Logado')
             })
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log('Erro de login')
+                console.log(error.code)
+                switch (error.code) {
+                    case 'auth/user-not-found':
+                        setMessage('Este e-mail não está associado a uma conta Vovonet.')        
+                        break;
+                    case 'auth/wrong-password':
+                        setMessage('E-mail e/ou senha incorretos.')
+                        break;
+                    case 'auth/invalid-email':
+                        setMessage('E-mail e/ou senha incorretos.')        
+                        break;
+                
+                    default:
+                        break;
+                }
             });
     }
 
@@ -121,6 +141,7 @@ export default function login({ navigation }) {
                     />
                 </Animatable.View>
                 {/* botões */}
+                <Text>{message}</Text>
                 <View style={stylesForm.containerBtn}>
                     <Animatable.View
                         animation={'slideInUp'}

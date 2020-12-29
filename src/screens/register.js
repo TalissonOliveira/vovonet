@@ -13,9 +13,15 @@ export default function register({ navigation }) {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const [message, setMessage] = useState('')
+
+    useEffect(() => {
+        setMessage('')
+    }, [name, email, password])
 
     function createUser(name, email, password){
         if(!name || !email || !password) {
+            setMessage('Por favor, preencha todos os campos!')
             return
         }
         firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -34,9 +40,20 @@ export default function register({ navigation }) {
             console.log('Usuario cadastrado')
         })
         .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+           console.log(error.code)
+            switch (error.code) {
+                case 'auth/email-already-in-use':
+                    setMessage('Este e-mail já está sendo utilizado. Faça login ou tente outro e-mail!')
+                    break;
+                case 'auth/invalid-email':
+                    setMessage('Formato de e-mail inválido. Por favor, tente novamente!')
+                    break;
+                case 'auth/weak-password':
+                    setMessage('Senha fraca. A sua senha deve conter mais de 6 caracteres!')
+                    break;
+               default:
+                   break;
+           }
         });
     }
 
@@ -110,6 +127,7 @@ export default function register({ navigation }) {
                     />
                 </Animatable.View>
                 {/* botões */}
+                <Text>{message}</Text>
                 <View style={stylesForm.containerBtn}>
                     <Animatable.View
                         animation={'slideInUp'}
