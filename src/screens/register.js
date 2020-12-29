@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import { View, Text, KeyboardAvoidingView, Image, TextInput, TouchableOpacity } from 'react-native'
+import { StatusBar } from 'expo-status-bar';
 import { FontAwesome5, Fontisto, Zocial } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable'
 import firebase from '../services/firebase'
@@ -39,8 +40,6 @@ export default function register({ navigation }) {
         });
     }
 
-    const AnimatedButton = Animatable.createAnimatableComponent(TouchableOpacity)
-
     return (
         <KeyboardAvoidingView style={styles.background}>
             {/* logo */}
@@ -48,7 +47,7 @@ export default function register({ navigation }) {
                 animation={'zoomIn'}
                 duration={1100}
             >
-                <Image style={{width: 200, height: 200}}source={require('../../assets/SimpleLogo.svg')}/>
+                <Image style={{width: 200, height: 200}}source={require('../../assets/SimpleLogo.png')}/>
             </Animatable.View>
 
             {/* formulário */}
@@ -112,13 +111,16 @@ export default function register({ navigation }) {
                 </Animatable.View>
                 {/* botões */}
                 <View style={stylesForm.containerBtn}>
-                    <AnimatedButton style={stylesForm.button}
+                    <Animatable.View
                         animation={'slideInUp'}
                         duration={600}
-                        onPress={()=> createUser(name, email,password)}
                     >
-                        <Text style={stylesForm.textBtn}>Registrar</Text>
-                    </AnimatedButton>
+                        <TouchableOpacity style={stylesForm.button}
+                            onPress={()=> createUser(name, email,password)}
+                        >
+                            <Text style={stylesForm.textBtn}>Registrar</Text>
+                        </TouchableOpacity>
+                    </Animatable.View>
 
                     <Animatable.Text style={stylesForm.text}
                         animation={'slideInUp'}
@@ -127,15 +129,18 @@ export default function register({ navigation }) {
                         ou
                     </Animatable.Text>
 
-                    <AnimatedButton onPress={() => navigation.navigate('Login')}
+                    <Animatable.View
                         animation={'slideInUp'}
                         duration={860}
                     >
-                        <Text style={stylesForm.text}>
-                            Clique aqui para entrar
-                        </Text>
-                    </AnimatedButton>
+                        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                            <Text style={stylesForm.text}>
+                                Clique aqui para entrar
+                            </Text>
+                        </TouchableOpacity>
+                    </Animatable.View>
                 </View>
+                <StatusBar style='dark' backgroundColor='#efefef' translucent={false} />
                 
             </View>
         </KeyboardAvoidingView>
