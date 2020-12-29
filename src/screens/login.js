@@ -141,7 +141,7 @@ export default function login({ navigation }) {
                     />
                 </Animatable.View>
                 {/* botões */}
-                <Text>{message}</Text>
+                <Text style={{color: '#ec2300', textAlign: 'center'}}>{message}</Text>
                 <View style={stylesForm.containerBtn}>
                     <Animatable.View
                         animation={'slideInUp'}
