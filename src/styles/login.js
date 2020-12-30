@@ -19,4 +19,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingBottom: 110,
   },
+  google:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 40
+  },
 });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Animated, Keyboard } from 'react-native'
-import { Fontisto, Zocial } from '@expo/vector-icons';
+import { Fontisto, Zocial, FontAwesome } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 
 import * as Animatable from 'react-native-animatable'
@@ -14,6 +14,8 @@ export default function login({ navigation }) {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
+    const provider = new firebase.auth.GoogleAuthProvider();
+    
 
     useEffect(() => {
         setMessage('')
@@ -56,6 +58,35 @@ export default function login({ navigation }) {
             })
         ]).start()
     }
+    function loginGoogle(){
+        firebase.auth().signInWithPopup(provider)
+        .then(function(result) {
+            let token = result.credential.accessToken;
+            console.log(token)
+            let user = result.user
+            let userId = result.user.uid
+            let name = result.user.displayName
+            let photo = result.user.photoURL
+            let email = result.user.email
+            firebase.firestore().collection("users").doc(userId).set({
+                name: name,
+                email: email,
+                photo: photo
+            })
+            
+          }).catch(function(error) {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            console.log('codigo do erro '+errorCode)
+            console.log('mensagem do erro '+ errorMessage)
+            /* let email = error.email;
+            console.log(email)
+      
+            let credential = error.credential;
+            console.log(credential)
+            // ... */
+          })
+    }
     function singIn(email, password) {
         if(!email || !password) {
             setMessage('Por favor, preencha todos os campos!')
@@ -88,6 +119,7 @@ export default function login({ navigation }) {
                 }
             });
     }
+    
 
     return (
         <KeyboardAvoidingView style={styles.background}>
@@ -173,6 +205,20 @@ export default function login({ navigation }) {
                                 Clique aqui para criar uma nova conta
                             </Text>
                         </TouchableOpacity>
+                    </Animatable.View>
+                        
+                    <Animatable.View
+                    style={styles.google}
+                    animation={'slideInUp'}
+                    duration={970}
+                    >
+                        <TouchableOpacity onPress={()=> loginGoogle()} >
+                            <FontAwesome name="google" size={30} color="black" />
+                            
+
+                        </TouchableOpacity>
+                        <Text>Entrar com google</Text>
+                        
                     </Animatable.View>
                 </View>
                 
