@@ -14,6 +14,9 @@ export default function login({ navigation }) {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
+    const [keyboard, setKeyboard] = useState(false)
+
+
 
     useEffect(() => {
         setMessage('')
@@ -25,37 +28,22 @@ export default function login({ navigation }) {
         const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow)
         const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide)
 
-
+        return () => {
+            keyboardDidShowListener.remove()
+            keyboardDidHideListener.remove()
+        }
     }, [])
+
     function keyboardDidShow() {
-        Animated.parallel([
-            Animated.timing(logo.x, {
-                toValue: 55,
-                duration: 100,
-                useNativeDriver: true
-            }),
-            Animated.timing(logo.y, {
-                toValue: 55,
-                duration: 100,
-                useNativeDriver: true
-            })
-        ]).start()
+        setKeyboard(true)
     }
 
     function keyboardDidHide() {
-        Animated.parallel([
-            Animated.timing(logo.x, {
-                toValue: 160,
-                duration: 100,
-                useNativeDriver: true
-            }),
-            Animated.timing(logo.y, {
-                toValue: 160,
-                duration: 100,
-                useNativeDriver: true
-            })
-        ]).start()
+        setKeyboard(false)
     }
+
+    
+
     function singIn(email, password) {
         if(!email || !password) {
             setMessage('Por favor, preencha todos os campos!')
@@ -92,7 +80,7 @@ export default function login({ navigation }) {
     return (
         <KeyboardAvoidingView style={styles.background}>
             {/* logo */}
-            <Animatable.View style={styles.containerImage}
+            <Animatable.View style={keyboard == true ? styles.hideImage : styles.containerImage}
                 animation={'zoomIn'}
                 duration={1100}
             >
@@ -100,7 +88,7 @@ export default function login({ navigation }) {
             </Animatable.View>
 
             {/* formulário */}
-            <View style={styles.containerForm}>
+            <View style={keyboard == true ? styles.containerFormWithKeyboard : styles.containerForm}>
                 {/* inputs */}
                 <Animatable.Text style={stylesForm.label}
                     animation='bounceInRight'

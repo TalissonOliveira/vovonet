@@ -12,12 +12,21 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  hideImage: {
+    display: 'none'
+  },
   containerForm: {
     flex: 1,
     width: '60%',
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 110,
+  },
+  containerFormWithKeyboard: {
+    flex: 1,
+    width: '60%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
 });
