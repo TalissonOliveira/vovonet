@@ -1,17 +1,29 @@
-import React from "react"
-import {} from "react-native"
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, {useEffect} from "react"
+import {View} from "react-native"
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import BeginnerPart from '../screens/beginnerPart'
 import IntermediatePart from '../screens/intermediatePart'
 import AdvancedPart from '../screens/advancedPart'
+import TopPart from '../screens/topPart'
 
 
-const Tab = createBottomTabNavigator()
 
-export default props => (
+const Tab = createMaterialTopTabNavigator()
 
-        <NavigationContainer>
+
+export default props => {
+    useEffect(()=>{
+        props.navigation.setOptions({ title: props.route.params.title})
+    })
+    
+    /*
+
+        Ver resultado do warn abaixo
+    */
+    return(
+    <>
+        <TopPart />
+        <View style={{flexGrow:8}}>
             <Tab.Navigator tabBarOptions={{
                 activeTintColor: '#51206A',
                 inactiveTintColor: '#716F6F',
@@ -21,5 +33,7 @@ export default props => (
                 <Tab.Screen name = "Intermediáro" component= {IntermediatePart}/>
                 <Tab.Screen name = "Avançado" component= {AdvancedPart}/>
             </Tab.Navigator>
-        </NavigationContainer>
-)
+        </View>
+    </>
+    )
+}

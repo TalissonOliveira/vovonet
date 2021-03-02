@@ -23,7 +23,8 @@ export default StyleSheet.create({
     title: {
         color: '#fff',
         fontSize: 22,
-        fontWeight: '500'
+        fontWeight: '500',
+        paddingRight: 15,
     },
     description: {
         color: '#fff',

@@ -7,13 +7,14 @@ import register from '../screens/register'
 import login from '../screens/login'
 import initial from '../screens/initial'
 import home from '../screens/home'
+import Tab from './tabLevelChoice'
 
 const Stack = createStackNavigator()
 
-export default function routes() {
+export default function routes(props) {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName={'Login'}>
+            <Stack.Navigator initialRouteName={'Home'}>
                 <Stack.Screen
                     name={'Register'}
                     component={register}
@@ -45,6 +46,25 @@ export default function routes() {
                     component={home}
                     options={{
                         headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name={'Tabs'}
+                    component={Tab}
+                    options={{
+                        title: "textao",
+                        headerTitleContainerStyle: {
+                            left: 10, // THIS RIGHT HERE
+                        },
+                        headerStyle: {
+                            backgroundColor: '#51206a',
+                        },
+                        headerTintColor: '#ffffff',
+                        headerTitleStyle: {
+                            fontSize: 20,
+                            flex: 1,
+                            textAlign: 'center',
+                        }
                     }}
                 />
             </Stack.Navigator>
