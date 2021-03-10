@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from 'react'
-import { View, Text, KeyboardAvoidingView, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Keyboard } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import { FontAwesome5, Fontisto, Zocial } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable'
@@ -14,10 +14,29 @@ export default function register({ navigation }) {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [message, setMessage] = useState('')
+    const [keyboard, setKeyboard] = useState(false)
 
     useEffect(() => {
         setMessage('')
     }, [name, email, password])
+
+    useEffect(() => {
+        const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow)
+        const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide)
+
+        return () => {
+            keyboardDidShowListener.remove()
+            keyboardDidHideListener.remove()
+        }
+    }, [])
+
+    function keyboardDidShow() {
+        setKeyboard(true)
+    }
+
+    function keyboardDidHide() {
+        setKeyboard(false)
+    }
 
     function createUser(name, email, password){
         if(!name || !email || !password) {
@@ -60,7 +79,7 @@ export default function register({ navigation }) {
     return (
         <KeyboardAvoidingView style={styles.background}>
             {/* logo */}
-            <Animatable.View style={styles.containerImage}
+            <Animatable.View style={keyboard == true ? styles.hideImage : styles.containerImage}
                 animation={'zoomIn'}
                 duration={1100}
             >
@@ -68,7 +87,7 @@ export default function register({ navigation }) {
             </Animatable.View>
 
             {/* formulário */}
-            <View style={styles.containerForm}>
+            <View style={keyboard == true ? styles.containerFormWithKeyboard : styles.containerForm}>
                 {/* inputs */}
                 <Animatable.Text style={stylesForm.label}
                     animation='bounceInLeft'
