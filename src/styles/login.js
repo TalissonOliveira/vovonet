@@ -28,5 +28,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
-  }
+  },
+  google:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 40
+  },
 });

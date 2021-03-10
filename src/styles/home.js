@@ -7,8 +7,10 @@ export default StyleSheet.create({
     },
     headerContainer: {
         height: '28%',
+        width: '100%',
         backgroundColor: '#51206A',
-        paddingLeft: 15
+        paddingLeft: 15,
+        paddingRight: 15,
     },
     header: {
         height: 40,
@@ -23,20 +25,18 @@ export default StyleSheet.create({
     title: {
         color: '#fff',
         fontSize: 22,
-        fontWeight: '500'
+        fontWeight: '500',
+        paddingRight: 15,
     },
     description: {
         color: '#fff',
         fontSize: 30,
         fontWeight: '500',
         marginTop: 16,
+        zIndex: 1,
     },
     image: {
-        width: 130,
-        height: 105,
-        position: 'absolute',
-        bottom: 0,
-        right: 15
+        tintColor: 'white',
     },
 
     //Body
@@ -52,6 +52,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         paddingLeft: 15,
         marginBottom: 15,
+        paddingTop: 20,
         borderLeftWidth: 8,
         borderColor: '#FC8212',
         borderRadius: 10,
@@ -73,7 +74,8 @@ export default StyleSheet.create({
         marginBottom: 5,
     },
     categoryDescription: {
-        fontSize: 14
+        fontSize: 14,
+        width:'80%',
     },
     categoryIcon: {
         width: 65,

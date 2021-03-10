@@ -7,13 +7,15 @@ import register from '../screens/register'
 import login from '../screens/login'
 import initial from '../screens/initial'
 import home from '../screens/home'
+import Tab from './tabLevelChoice'
+import { Button } from 'react-native';
 
 const Stack = createStackNavigator()
 
-export default function routes() {
+export default function routes(props) {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName={'Initial'}>
+            <Stack.Navigator initialRouteName={'Home'}>
                 <Stack.Screen
                     name={'Register'}
                     component={register}
@@ -44,7 +46,31 @@ export default function routes() {
                     name={'Home'}
                     component={home}
                     options={{
+                        drawerLabel: ':)',
                         headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name={'Tabs'}
+                    component={Tab}
+                    options={{
+                        title: "-",
+                        headerTitleContainerStyle: {
+                            left: '20%',
+                            right:'20%',
+                            backgroundColor: 'black',
+                            alignContent: 'center',
+
+                        },
+                        headerStyle: {
+                            backgroundColor: '#51206a',
+                        },
+                        headerTintColor: '#ffffff',
+                        headerTitleStyle: {
+                            fontSize: 20,
+                            flex: 1,
+                            textAlign: 'center',
+                        }
                     }}
                 />
             </Stack.Navigator>

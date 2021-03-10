@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Animated, Keyboard } from 'react-native'
-import { Fontisto, Zocial } from '@expo/vector-icons';
+import { Fontisto, Zocial, FontAwesome } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 
 import * as Animatable from 'react-native-animatable'
@@ -76,6 +76,7 @@ export default function login({ navigation }) {
                 }
             });
     }
+    
 
     return (
         <KeyboardAvoidingView style={styles.background}>
@@ -161,6 +162,20 @@ export default function login({ navigation }) {
                                 Clique aqui para criar uma nova conta
                             </Text>
                         </TouchableOpacity>
+                    </Animatable.View>
+                        
+                    <Animatable.View
+                    style={styles.google}
+                    animation={'slideInUp'}
+                    duration={970}
+                    >
+                        <TouchableOpacity onPress={()=> loginGoogle()} >
+                            <FontAwesome name="google" size={30} color="black" />
+                            
+
+                        </TouchableOpacity>
+                        <Text>Entrar com google</Text>
+                        
                     </Animatable.View>
                 </View>
                 
