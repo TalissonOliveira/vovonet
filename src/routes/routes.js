@@ -8,6 +8,7 @@ import login from '../screens/login'
 import initial from '../screens/initial'
 import home from '../screens/home'
 import Tab from './tabLevelChoice'
+import { Button } from 'react-native';
 
 const Stack = createStackNavigator()
 
@@ -45,6 +46,7 @@ export default function routes(props) {
                     name={'Home'}
                     component={home}
                     options={{
+                        drawerLabel: ':)',
                         headerShown: false
                     }}
                 />
@@ -52,9 +54,13 @@ export default function routes(props) {
                     name={'Tabs'}
                     component={Tab}
                     options={{
-                        title: "textao",
+                        title: "-",
                         headerTitleContainerStyle: {
-                            left: 10, // THIS RIGHT HERE
+                            left: '20%',
+                            right:'20%',
+                            backgroundColor: 'black',
+                            alignContent: 'center',
+
                         },
                         headerStyle: {
                             backgroundColor: '#51206a',

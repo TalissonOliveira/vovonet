@@ -1,10 +1,11 @@
 import React, {useEffect} from "react"
-import {View} from "react-native"
+import {Platform, View, Button} from "react-native"
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import BeginnerPart from '../screens/beginnerPart'
 import IntermediatePart from '../screens/intermediatePart'
 import AdvancedPart from '../screens/advancedPart'
-import TopPart from '../screens/topPart'
+import Header from '../screens/header'
+import { AntDesign } from '@expo/vector-icons';
 
 
 
@@ -13,7 +14,21 @@ const Tab = createMaterialTopTabNavigator()
 
 export default props => {
     useEffect(()=>{
-        props.navigation.setOptions({ title: props.route.params.title})
+        if (Platform.OS === 'ios'){
+            props.navigation.setOptions({ 
+                title: props.route.params.title,
+                headerLeft:() => (
+                    <View style={{paddingLeft: 8}}>
+                        <AntDesign name="arrowleft" size={24} color="white" onPress={()=>{ props.navigation.goBack()}}/>
+                    </View>),
+            })
+        }
+
+        else{
+            props.navigation.setOptions({ 
+                title: props.route.params.title,
+            })
+        }        
     })
     
     /*
@@ -22,12 +37,12 @@ export default props => {
     */
     return(
     <>
-        <TopPart />
-        <View style={{flexGrow:8}}>
+        <Header textCurrent = {props.route.params.headerText} />
+        <View style={{flexGrow:17}}>
             <Tab.Navigator tabBarOptions={{
                 activeTintColor: '#51206A',
                 inactiveTintColor: '#716F6F',
-                labelStyle: {fontSize: 20}
+                labelStyle: {fontSize: 14}
                 }}>
                 <Tab.Screen name = "Iniciante" component= {BeginnerPart}/>
                 <Tab.Screen name = "Intermediáro" component= {IntermediatePart}/>

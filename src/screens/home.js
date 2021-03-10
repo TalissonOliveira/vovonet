@@ -1,26 +1,31 @@
-﻿import React from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+﻿import React, {useEffect}            from 'react'
+import { View, Text,
+    Image, Svg,
+    TouchableOpacity, SafeAreaView } from 'react-native'
+import { Ionicons, SimpleLineIcons } from '@expo/vector-icons'
+import * as Animatable               from 'react-native-animatable'
+import styles                        from '../styles/home'
 
-import * as Animatable from 'react-native-animatable'
-
-import styles from '../styles/home'
+import HeaderSVG from '../../assets/headerImage'
+import SmartPhoneSVG  from '../../assets/smartphone'
+import LaptopSVG   from '../../assets/laptop'
+import ChromecastSVG   from '../../assets/chromecast'
 
 export default function home({ navigation }) {
     const AnimatedButton =  Animatable.createAnimatableComponent(TouchableOpacity)
     const AnimatedImg    =  Animatable.createAnimatableComponent(Image)
 
 
-    function changeScreen(titulo="NÃO DEFINIDO"){
-        navigation.navigate('Tabs',{title:titulo})
+    function changeScreen(title="NÃO DEFINIDO", headerText='header text not defined'){
+        navigation.navigate('Tabs',{title:title, headerText:headerText})
     }
-
+    
 
 
 
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             
             <View style={styles.headerContainer}>
                 
@@ -32,30 +37,34 @@ export default function home({ navigation }) {
                 </View>
 
                 <Text style={styles.description}>Olá, nome!{'\n'}Escolha uma categoria para começar a aprender.</Text>
-                <Image source={require('../../assets/headerImage.svg')} style={styles.image} />
+                <View style={{ flex: 1,flexDirection:'row-reverse', alignItems:'flex-end', zIndex:0}}>
+                    <HeaderSVG/>
+                </View>
+                
+                
+                
             </View>
 
 
 
             <View style={styles.body}>
                 
-                <TouchableOpacity style={[styles.category, { borderColor: '#FC8212' }]} onPress={() => changeScreen('Celular')}>
+                <TouchableOpacity style={[styles.category, { borderColor: '#FC8212' }]} onPress={() => changeScreen('Celular', 'Aprenda a utilizar o seu smartphone')}>
                     <Text style={styles.categoryName}>Celular</Text>
                     <View style={{flexDirection: 'row'}}>
                         <Text style={styles.categoryDescription}>Aprenda a utilizar o seu smartphone de maneira mais eficiente</Text>
-
-                        <Image style={styles.categoryIcon} source={require('../../assets/smartphone.svg')} />
-
+                        <SmartPhoneSVG/>
                     </View>
+                    
                 </TouchableOpacity>
 
 
                 <TouchableOpacity style={[styles.category, { borderColor: '#00A360' }]} onPress={() => changeScreen('Computador')}>
                     <Text style={styles.categoryName}>Computador</Text>
                     <View style={{flexDirection: 'row'}}>
-                        <Text style={styles.categoryDescription}>Aprenda a utilizar o seu smartphone de maneira mais eficiente</Text>
+                        <Text style={styles.categoryDescription}>Aprenda a utilizar o seu computador de maneira mais eficiente</Text>
 
-                        <Image style={styles.categoryIcon} source={require('../../assets/laptop.svg')} />
+                        <LaptopSVG/>
                     </View>
                 </TouchableOpacity>
 
@@ -64,14 +73,14 @@ export default function home({ navigation }) {
                     <Text style={styles.categoryName}>Outros dispositivos</Text>
                     
                     <View style={{flexDirection: 'row'}}>
-                        <Text style={styles.categoryDescription}>Aprenda a utilizar o seu smartphone de maneira mais eficiente</Text>
+                        <Text style={styles.categoryDescription}>Aprenda a utilizar outros dispositivos de maneira mais eficiente</Text>
 
-                        <Image style={styles.categoryIcon} source={require('../../assets/chromecast.svg')} />
+                        <ChromecastSVG/>
                     </View>
                 </TouchableOpacity>
 
             </View>
 
-        </View>
+        </SafeAreaView>
     )
 }
