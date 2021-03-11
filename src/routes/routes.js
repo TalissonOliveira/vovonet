@@ -46,8 +46,22 @@ export default function routes(props) {
                     name={'Home'}
                     component={home}
                     options={{
-                        drawerLabel: ':)',
-                        headerShown: false
+                        title: 'Categoria',
+                        headerTitleContainerStyle: {
+                            left: '20%',
+                            right:'20%',
+                            alignContent: 'center',
+
+                        },
+                        headerStyle: {
+                            backgroundColor: '#51206a',
+                        },
+                        headerTintColor: '#ffffff',
+                        headerTitleStyle: {
+                            fontSize: 25,
+                            flex: 1,
+                            textAlign: 'center',
+                        }
                     }}
                 />
                 <Stack.Screen
@@ -58,7 +72,6 @@ export default function routes(props) {
                         headerTitleContainerStyle: {
                             left: '20%',
                             right:'20%',
-                            backgroundColor: 'black',
                             alignContent: 'center',
 
                         },

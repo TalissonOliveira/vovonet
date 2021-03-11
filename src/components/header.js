@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 import HeaderImage from '../../assets/headerImage'
 import { StyleSheet, Dimensions } from 'react-native';
 
@@ -9,7 +9,7 @@ export default function(props){
     listaDePalavras = listaDePalavras.map((palavra, indice) => <Text key={indice} style={styles.textStyle}>{palavra}</Text>)
 
     return(
-        <View style={styles.viewStyle}>
+        <SafeAreaView style={styles.viewStyle}>
            
             
             {listaDePalavras}
@@ -17,7 +17,7 @@ export default function(props){
             <View style={styles.svgVovo}>
                 <HeaderImage/>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 

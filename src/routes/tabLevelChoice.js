@@ -1,11 +1,11 @@
-import React, {useEffect} from "react"
-import {Platform, View, Button} from "react-native"
+import React, {useEffect}                from "react"
+import {Platform, View}                  from "react-native"
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import BeginnerPart from '../screens/beginnerPart'
-import IntermediatePart from '../screens/intermediatePart'
-import AdvancedPart from '../screens/advancedPart'
-import Header from '../screens/header'
-import { AntDesign } from '@expo/vector-icons';
+import BeginnerPart                      from '../screens/beginnerPart'
+import IntermediatePart                  from '../screens/intermediatePart'
+import AdvancedPart                      from '../screens/advancedPart'
+import Header                            from '../screens/header'
+import { AntDesign }                     from '@expo/vector-icons';
 
 
 
