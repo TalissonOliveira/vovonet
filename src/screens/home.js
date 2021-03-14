@@ -1,6 +1,5 @@
 ﻿import React, { useEffect }from 'react'
-import { View, Text, 
-       TouchableOpacity,
+import { View,
        SafeAreaView }      from 'react-native'
 import { Ionicons }        from '@expo/vector-icons'
 import   styles            from '../styles/home'
@@ -10,7 +9,7 @@ import SmartPhoneSVG from '../../assets/smartphone'
 import LaptopSVG     from '../../assets/laptop'
 import ChromecastSVG from '../../assets/chromecast'
 
-import CustomButton  from '../components/customButton'
+import CardView  from '../components/CardView'
 
 export default function home({ navigation }) {
 
@@ -24,6 +23,7 @@ export default function home({ navigation }) {
         })
     })
 
+    console.warn(392)
     
     //Titulos e subtitulos das próximas telas
     const smartphoneTitle = 'Celular'
@@ -50,22 +50,22 @@ export default function home({ navigation }) {
 
             <View style={styles.body}>
                 
-                <CustomButton title="Celular"             borderColor='#FC8212' onPress={() => changeScreen(smartphoneTitle, smartphoneSubtitle)}
+                <CardView title="Celular"             borderColor='#FC8212' onPress={() => changeScreen(smartphoneTitle, smartphoneSubtitle)}
                               subTitle="Aprenda a utilizar o seu celular de maneira mais eficiente">
                     <SmartPhoneSVG/>
-                </CustomButton>
+                </CardView>
                 
                 
-                <CustomButton title='Computador'          borderColor='#00A360' onPress={() => changeScreen(computerTitle, computerSubtitle)}
+                <CardView title='Computador'          borderColor='#00A360' onPress={() => changeScreen(computerTitle, computerSubtitle)}
                               subTitle='Aprenda a utilizar o seu computador de maneira mais eficiente'>
                     <LaptopSVG/>
-                </CustomButton>
+                </CardView>
 
 
-                <CustomButton title='Outros dispositivos' borderColor='#20C6FA' onPress={() => changeScreen(othersTitle, othersSubtitle)}
+                <CardView title='Outros dispositivos' borderColor='#20C6FA' onPress={() => changeScreen(othersTitle, othersSubtitle)}
                               subTitle='Aprenda a utilizar outros dispositivos de maneira mais eficiente'>
                     <ChromecastSVG/>
-                </CustomButton>
+                </CardView>
 
             </View>
 

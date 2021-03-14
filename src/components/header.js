@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         
     },
     textStyle: {
-        fontSize: 30,
+        fontSize: Math.floor(Dimensions.get('screen').width/13),
         color: '#ffffff',
         width: 'auto',
         zIndex: 1,
