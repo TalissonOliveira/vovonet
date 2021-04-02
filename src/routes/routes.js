@@ -51,7 +51,7 @@ export default function routes(props) {
                             left: '20%',
                             right:'20%',
                             alignContent: 'center',
-
+                            
                         },
                         headerStyle: {
                             backgroundColor: '#51206a',
@@ -61,6 +61,7 @@ export default function routes(props) {
                             fontSize: 25,
                             flex: 1,
                             textAlign: 'center',
+                            justifyContent: 'center',
                         }
                     }}
                 />
@@ -77,12 +78,14 @@ export default function routes(props) {
                         },
                         headerStyle: {
                             backgroundColor: '#51206a',
+                            backgroundColor:'pink'
                         },
                         headerTintColor: '#ffffff',
                         headerTitleStyle: {
                             fontSize: 20,
                             flex: 1,
                             textAlign: 'center',
+                            backgroundColor:'red'
                         }
                     }}
                 />

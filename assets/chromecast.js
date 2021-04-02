@@ -4,23 +4,17 @@ import React from "react";
 import { SvgXml } from 'react-native-svg';
 
 const xml = `
-<svg xmlns="http://www.w3.org/2000/svg" > 
-<path d="M0 0h48v48h-48z" fill="none" /><path d="M0 0h48v48h-48z" fill="none"/><path d="M2 36v6h6c0-3.31-2.69-6-6-6zm0-8v4c5.52 0 10 4.48 10 10h4c0-7.73-6.27-14-14-14zm36-14h-28v3.27c7.92 2.56 14.17 8.81 16.73 16.73h11.27v-20zm-36 6v4c9.94 0 18 8.06 18 18h4c0-12.15-9.85-22-22-22zm40-14h-36c-2.21 0-4 1.79-4 4v6h4v-6h36v28h-14v4h14c2.21 0 4-1.79 4-4v-28c0-2.21-1.79-4-4-4z"/>
-	
-	
-	<metadata>
-		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<rdf:Description about="https://iconscout.com/legal#licenses" dc:title="Cast, Device, Connected, Range, Network, Signal" dc:description="Cast, Device, Connected, Range, Network, Signal" dc:publisher="Iconscout" dc:date="2016-12-14" dc:format="image/svg+xml" dc:language="en">
-				<dc:creator>
-					<rdf:Bag>
-						<rdf:li>Google Inc.</rdf:li>
-					</rdf:Bag>
-				</dc:creator>
-			</rdf:Description>
-		</rdf:RDF>
-    </metadata>
-	
-</svg>`
-
-export default () => <SvgXml xml={xml} fill='gray' />;
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+<g id="outline">
+<path d="m6 39a19 19 0 1 0 19-19 19.021 19.021 0 0 0 -19 19zm36 0a17 17 0 1 1 -17-17 17.019 17.019 0 0 1 17 17z"/>
+<path d="m12 39h-2a15.285 15.285 0 0 0 11.787 14.977l.426-1.954a13.446 13.446 0 0 1 -10.213-13.023z"/>
+<path d="m24 52h2v2h-2z"/>
+<path d="m58 3a1 1 0 0 0 -1-1h-12a.978.978 0 0 0 -.443.115l-3.793 1.885h-14.764a5.006 5.006 0 0 0 -5 5v7.355a23 23 0 1 0 8 0v-4.355h11.764l3.793 1.885a.978.978 0 0 0 .443.115h12a1 1 0 0 0 1-1v-1h4v-8h-4zm-35 6a3 3 0 0 1 3-3h2.026a4.948 4.948 0 0 0 -1.026 3v7.092c-.66-.057-1.326-.092-2-.092s-1.34.035-2 .092zm23 30a21 21 0 1 1 -21-21 21.024 21.024 0 0 1 21 21zm-6-29h-11v-1a3 3 0 0 1 3-3h8zm4 1.382-2-1v-4.764l2-1zm12 .618h-10v-8h10zm4-6v4h-2v-4z"/>
+<path d="m50 8h4v-2h-6v4h2z"/>
+<path d="m15 39a10 10 0 1 0 10-10 10.011 10.011 0 0 0 -10 10zm2 0a7.965 7.965 0 0 1 .571-2.952 8.683 8.683 0 0 0 2.483 3.482 4.977 4.977 0 0 0 4.229 4.4 6.469 6.469 0 0 1 -3.236 2.019 8 8 0 0 1 -4.047-6.949zm5 0a3 3 0 1 1 3 3 3 3 0 0 1 -3-3zm10.857-1.482a7.948 7.948 0 0 1 -9.032 9.382 7.611 7.611 0 0 0 2.988-3.257 5 5 0 0 0 3.187-4.643 4.936 4.936 0 0 0 -.556-2.243 7.764 7.764 0 0 1 3.413.761zm-.9-2.448a11.8 11.8 0 0 0 -4.169-.216 4.992 4.992 0 0 0 -7.383 2.176 6.452 6.452 0 0 1 -1.346-3.372 7.976 7.976 0 0 1 12.9 1.412z"/>
+</g>
+</svg>
+`
+    
+export default () => <SvgXml xml={xml} fill='gray' stroke="gray"  strokeWidth='1.5px' />;
 

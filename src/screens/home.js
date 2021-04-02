@@ -1,7 +1,7 @@
 ﻿import React, { useEffect }from 'react'
 import { View,
        SafeAreaView }      from 'react-native'
-import { Ionicons }        from '@expo/vector-icons'
+import { Ionicons, SimpleLineIcons}        from '@expo/vector-icons'
 import   styles            from '../styles/home'
 
 import Header        from '../components/header'
@@ -23,7 +23,6 @@ export default function home({ navigation }) {
         })
     })
 
-    console.warn(392)
     
     //Titulos e subtitulos das próximas telas
     const smartphoneTitle = 'Celular'

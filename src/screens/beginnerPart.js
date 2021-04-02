@@ -5,8 +5,9 @@ import CardView from '../components/CardView'
 
 export default props => (
 
-        <SafeAreaView style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', width:'107%', marginTop:'5%'}}>
-                <ScrollView style={{flex: 1, width:'90%'} }>
+        <SafeAreaView  style={{ flexGrow: 1, width:'100%'}}>
+                <ScrollView style={{flexGrow:1, width:'100%'} } 
+                            contentContainerStyle={{justifyContent: 'center', alignItems: 'center', marginTop:'5%'}}>
 
                         <CardView  title="Introdução"            borderColor='#20C6FA' onPress={null}
                                         subTitle="Primeiro contato com o estudo"/>
@@ -19,6 +20,19 @@ export default props => (
                 </ScrollView>
         </SafeAreaView>
     
-
-    
 )
+/*
+<SafeAreaView style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', width:'107%', marginTop:'5%'}}>
+                <ScrollView style={{flex: 1, width:'90%'} }>
+
+                        <CardView  title="Introdução"            borderColor='#20C6FA' onPress={null}
+                                        subTitle="Primeiro contato com o estudo"/>
+                
+                        <CardView  title="Uso básico"            borderColor='#20C6FA' onPress={null}
+                                        subTitle="Vamos dar os primeiros passos"/>
+
+                        <CardView  title="Uso dia a dia"         borderColor='#20C6FA' onPress={null}
+                                        subTitle="Vamos ver a melhor forma de usa-lo diariamente"/>
+                </ScrollView>
+        </SafeAreaView>
+*/
